@@ -4,18 +4,18 @@ import java.net.*;
 import java.util.Scanner;
 import java.net.Socket;
 
-public class Reception implements Runnable
+public class Send implements Runnable
 {
  private Socket socket; 
  private BufferedReader reader;
 
- public Reception(Socket socket)
+ public Send (Socket socket)
  {
-  System.out.println("Socket creation");
+  System.out.println("Creation du socket de recepetion");
   this.socket = socket;
  }
  public void run()
  {
-  System.out.println("Thread launching");
+  System.out.println("Lancement de la thead de recepetion");
  }
 }

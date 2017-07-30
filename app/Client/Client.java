@@ -27,7 +27,7 @@ public class Client
    System.out.println("Connecté :" + socket);
    Thread t3 = new Thread(new Reception(socket));
    t3.start();
-   Thread t4 = new Thread(new Envoi(socket));
+   Thread t4 = new Thread(new Send(socket));
    t4.start();
   }
   catch(UnknownHostException uhe)
