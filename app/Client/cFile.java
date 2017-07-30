@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.File;
 
-public class File
+public class cFile
 {
  String name;
  int fileSize; // octet
@@ -12,9 +13,9 @@ public class File
  String remotePath;
  String localPath;
 
- static ArrayList<File> fileList = new ArrayList<File>();
+ static ArrayList<cFile> fileList = new ArrayList<cFile>();
 
- public File(int fileSize, Date uploadDate, Date updateDate , String[] tags, int id, int clientId)
+ public cFile(int fileSize, Date uploadDate, Date updateDate , String[] tags, int id, int clientId)
  {
   this.fileSize = fileSize;
   this.uploadDate = uploadDate;
@@ -24,17 +25,20 @@ public class File
   this.remotePath = remotePath;
   this.clientId = clientId;
  }
+ public cFile()
+ {
 
- public void addFile(File f)
+ }
+ public void addFile(cFile f)
  {
   fileList.add(f);
   System.out.println("File added to the list");
  }
 
- public ArrayList<File> searchByTag(String[] tags)
+ public ArrayList<cFile> searchByTags(String[] tags)
  {
   int fileListSize = fileList.size(); 
-  ArrayList<File> result = new ArrayList<File>();
+  ArrayList<cFile> result = new ArrayList<cFile>();
 
   int tagsSize = tags.length;
  int i, u, v;
@@ -67,4 +71,29 @@ public class File
   }
  }
 
+
+private ArrayList<String> recursiveList(String path)
+{
+ File root = new File( path );
+ File[] list = root.listFiles();
+
+ ArrayList<String> results = new ArrayList<String>();
+
+ if (list == null) return null;
+
+ for ( File f : list ) {
+  if ( f.isDirectory() ) {
+   //Doing it recursively
+   ArrayList<String> tmp = recursiveList( f.getAbsolutePath() );
+   for(String el:tmp)
+   {
+    results.add(el);
+   }
+  }
+  else {
+   results.add(f.getAbsolutePath());
+  }
+ }
+ return results;
+}
 }

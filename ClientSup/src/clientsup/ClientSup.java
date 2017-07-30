@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientsup;
+package Client;
 
 
 import java.io.*;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.net.Socket;
 
 
-public class ClientSup
+public class Client
 {
     private Socket socket;
     private DataInputStream  streamInput ;
@@ -20,7 +20,7 @@ public class ClientSup
        private BufferedReader d2;
         private Scanner sc;
         private PrintWriter out;
-    public ClientSup(String serverName, int serverPort) throws IOException, InterruptedException
+    public Client(String serverName, int serverPort) throws IOException, InterruptedException
 	   {
            try
            {
@@ -33,7 +33,7 @@ public class ClientSup
                 
                sc = new Scanner(System.in);
                out = new PrintWriter(socket.getOutputStream());
-               out.println("Bonjour je tente de me connecté");
+               out.println("Bonjour je tente de me connecter");
                out.flush();
                Thread t3 = new Thread(new ReceptionC(d2, socket, conv));
                t3.start();
@@ -50,18 +50,6 @@ public class ClientSup
            {
                System.out.println("Erreur : " + ioe.getMessage());
            }
-           
-           
-           
-			
-            
-       }
-    
-    public static void main(String args[]) throws IOException, InterruptedException
-	   {  
-           String ipServer = "127.0.0.1"; 
-           ClientSup client;
-           client = new ClientSup(ipServer, 5002);
        }
 }
 
