@@ -12,11 +12,8 @@ public class Main{
   //Client client;
   //client = new Client(ipServer, 5002);
   cFile file = new cFile();
- ArrayList<String> tmp = file.recursiveList("./library");
- for(String el:tmp)
- {
-  System.out.println(el);
- }
+  boolean fnret  = file.scanFolderForNewFiles("library");
+  file.debugPrintList();
  }
 
 
