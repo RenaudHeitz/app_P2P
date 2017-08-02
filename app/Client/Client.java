@@ -19,7 +19,7 @@ public class Client
  private BufferedReader d2;
  private Scanner sc;
  private PrintWriter out;
- public Client(String serverName, int serverPort) throws IOException, InterruptedException
+ public Client(String serverName, int serverPort ) throws IOException, InterruptedException
  {
   try
   {

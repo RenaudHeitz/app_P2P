@@ -11,12 +11,15 @@ public class Reception implements Runnable{
     
     public Reception(Socket s)
     {
+        System.out.println("Creation of the reception socket");
         this.socket = s;
     }
     
     public void run()
     {
+        System.out.println("Reception thread launching");
         
+
     }
     
     

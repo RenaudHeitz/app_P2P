@@ -72,7 +72,7 @@ public class cFile
  }
 
 
-private ArrayList<String> recursiveList(String path)
+public ArrayList<String> recursiveList(String path)
 {
  File root = new File( path );
  File[] list = root.listFiles();

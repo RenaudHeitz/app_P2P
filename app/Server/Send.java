@@ -16,10 +16,12 @@ public class Send implements Runnable {
     private final Socket socket;
     
     public Send(Socket s) {
+        System.out.println("Creation of the sending socket");
         this.socket = s;
     }
     
     public void run() {
-        
+        System.out.println("Sending thread launching");
+
     }
 }
