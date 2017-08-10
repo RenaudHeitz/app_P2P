@@ -44,11 +44,15 @@ public class Send implements Runnable
                      // We generate a random listening port to create a connection between the two clients
                      Random r = new Random();
                      int port = 5001 + r.nextInt(6000 - 5001);
+                   
                      // Creation of a new socket on this port
                     ServerSocket socket2 = new ServerSocket(port);
+                     
+                    // Recuperation of the ip address
+                    String ip = InetAddress.getLocalHost().getHostAddress();
 
                      // We create a message composed of "/download idFile listeningPort"
-                     message = message + " " +port;
+                     message = message + " " +port + " " + ip;
                      out.println(message);
                      out.flush();
 

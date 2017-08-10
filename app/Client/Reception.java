@@ -38,6 +38,22 @@ public class Reception implements Runnable
                  String stringId = message.substring(8);               int idFInal =Integer.parseInt(stringId);
                  c.setId(idFInal);
              }
+             else if(message.contains("/uploadTo"))
+             {
+                 // dividing the String
+                 String stringId = message.substring(10);
+                 // Split in a tab to extract info
+                 
+                 String[] tabInfo = stringInfo.split(" ");
+                 int idToDownload = Integer.parseInt(tabInfo[1]);
+                 int listeningPort = Integer.parseInt(tabInfo[2]);
+                 String ipAddress = tabInfo[3];
+                 
+                 // Creation of the socket
+                 
+                 Socket socket2 = new Socket(ipAddress, listeningPort);
+                 
+             }
              else if(!message.equals(null))
              {
                  System.out.println(message);

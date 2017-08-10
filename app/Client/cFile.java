@@ -25,11 +25,9 @@ public class cFile implements Serializable
         this.tags = tags;
         this.clientId = clientId;
         this.fullPath = fullPath;
+
     }
-    public cFile()
-    {
-        
-    }
+
     
     public String getName()
     {
