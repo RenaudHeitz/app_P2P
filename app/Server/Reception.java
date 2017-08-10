@@ -78,14 +78,15 @@ public class Reception implements Runnable
                             String[] tabInfo = stringInfo.split(" ");
                             int idToDownload = Integer.parseInt(tabInfo[1]);
                             int listeningPort = Integer.parseInt(tabInfo[2]);
+                            String ipAddress = tabInfo[3];
                             cFile fileToDownload = cFile.localFileList.get(idToDownload);
                             int idOfTheOwner = fileToDownload.getOwnerId();
                             
                             // Initialisation of the stream to send message to the owner of the file
                             
                             out2 = new PrintWriter((Connected.connectedList.get(idOfTheOwner)).getOutputStream());
-
-                            out2.println("Someone is requesting the file " + idToDownload);
+                            // Sending a message with ipAddress of the requester, port and id of the file
+                            out2.println("/uploadTo "+ ipAddress + " " + port + " " + idToDownload);
                             out2.flush();
                             
                         }

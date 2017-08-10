@@ -97,6 +97,7 @@ public class cFile implements Serializable
     {
         return this.clientId;
     }
+
     public boolean scanFolderForNewFiles(String path)
     {
         //Getting the path of each files
