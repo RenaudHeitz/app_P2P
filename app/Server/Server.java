@@ -1,8 +1,7 @@
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
+import java.util.Scanner;
 import java.net.Socket;
-
 
 public class Server extends Thread
 {
@@ -12,7 +11,7 @@ public class Server extends Thread
     int port = 5002;
     
     
-    public Server(Socket socket) throws IOException
+    public Server() throws IOException
     {
         server = new ServerSocket(port);
         
@@ -21,25 +20,20 @@ public class Server extends Thread
             try{
                 socket = server.accept();
                 System.out.print("Server has connected! \n");
+                // Creation of a new entry for connected client
                 
+                Thread recept = new Thread(new Reception(socket));
+                recept.start();
+                
+                Thread send = new Thread(new Send(socket));
+                send.start();
+
                 
             }catch(IOException ioe){
                 System.out.print("It didn't work! - "+ioe.getMessage()+"\n");
             }
-            Thread recept = new Reception(socket);
-            recept.start();
-            
-            Thread send = new Send(socket);
-            send.start();
             
         }
-    }
-    public static void main ( String[] args ) throws Exception
-    {
-        System.out.println("Server launching");
-        socket = new Socket();
-        Server server1 = new Server(socket);
-        
     }
 }
 

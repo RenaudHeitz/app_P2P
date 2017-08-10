@@ -14,6 +14,9 @@ import java.util.logging.Logger;
 public class Send implements Runnable {
     
     private final Socket socket;
+    private String message = null;
+    private  PrintWriter out;
+
     
     public Send(Socket s) {
         System.out.println("Creation of the sending socket");
@@ -22,6 +25,21 @@ public class Send implements Runnable {
     
     public void run() {
         System.out.println("Sending thread launching");
-
+        Connected C = new Connected(socket);
+        C.add(C);
+        
+        int idClient = Connected.connectedList.indexOf(C);
+        try
+        {
+            out = new PrintWriter(socket.getOutputStream());
+            out.println("/yourId " + idClient );
+            out.flush();
+        }
+        catch(IOException ioe)
+        {
+            System.out.println("Erreur : " + ioe.getMessage());
+        }
     }
+    
+   
 }

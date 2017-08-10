@@ -14,18 +14,14 @@ import java.net.Socket;
 public class Client
 {
  private Socket socket;
- private DataInputStream  streamInput ;
-
- private BufferedReader d2;
- private Scanner sc;
- private PrintWriter out;
+ private int id ;
  public Client(String serverName, int serverPort ) throws IOException, InterruptedException
  {
   try
   {
    socket = new Socket(serverName, serverPort);
    System.out.println("Connecté :" + socket);
-   Thread t3 = new Thread(new Reception(socket));
+   Thread t3 = new Thread(new Reception(socket, this));
    t3.start();
    Thread t4 = new Thread(new Send(socket));
    t4.start();
@@ -39,5 +35,13 @@ public class Client
    System.out.println("Erreur : " + ioe.getMessage());
   }
  }
+public void setId(int i)
+    {
+        this.id = i;
+    }
+public int getId()
+    {
+        return id;
+    }
 }
 

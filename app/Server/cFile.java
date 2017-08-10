@@ -13,7 +13,7 @@ public class cFile implements Serializable
     int clientId; // Id of the owner
     ArrayList<String> tags;
     String fullPath;
-    public static ArrayList<cFile> localFileList = new ArrayList<cFile>();
+    static ArrayList<cFile> localFileList = new ArrayList<cFile>();
     public static ArrayList<cFile> remoteFileList = new ArrayList<cFile>();
     
     public cFile(String name, long fileSize, Date uploadDate, Date updateDate , ArrayList<String> tags, int id, int clientId, String fullPath)
@@ -29,11 +29,6 @@ public class cFile implements Serializable
     public cFile()
     {
         
-    }
-    
-    public String getName()
-    {
-        return this.name;
     }
     public void addFile(cFile f)
     {
@@ -52,7 +47,7 @@ public class cFile implements Serializable
         }
     }
     
-    public ArrayList<cFile> searchByTagsOnLocalFiles(String[] tags)
+    public static ArrayList<cFile> searchByTagsOnLocalFiles(String[] tags)
     {
         int fileListSize = localFileList.size();
         ArrayList<cFile> result = new ArrayList<cFile>();
@@ -66,7 +61,7 @@ public class cFile implements Serializable
                 int fileTagsSize = localFileList.get(i).tags.size();
                 for(v = 0; v < fileTagsSize; v++)
                 {
-                    if(this.tags.get(u).equals(localFileList.get(i).tags.get(v)))
+                    if(tags[u].equals(localFileList.get(i).tags.get(v)))
                     {
                         result.add(localFileList.get(i));
                     }
@@ -88,8 +83,21 @@ public class cFile implements Serializable
                                + " " + localFileList.get(i).name);
         }
     }
+    public String getName()
+    {
+        return this.name;
+    }
     
-    public boolean scanFolderForNewFiles(String path, Client c)
+    public int getId()
+    {
+        return this.id;
+    }
+    
+    public int getOwnerId()
+    {
+        return this.clientId;
+    }
+    public boolean scanFolderForNewFiles(String path)
     {
         //Getting the path of each files
         ArrayList<String> files = recursiveList(path);
@@ -141,7 +149,7 @@ public class cFile implements Serializable
                 }
             
                 //Create the final object
-                cFile tmp = new cFile(filename, fileSize, actualDate, actualDate,   tmpTags, -1, c.getId(), tmpFullPath);
+                cFile tmp = new cFile(filename, fileSize, actualDate, actualDate,   tmpTags, -1, -1, tmpFullPath);
                 //Add it to the file list
                 this.addFile(tmp);
             }
