@@ -1,2 +1,2 @@
 # app_P2P
-PUtain d'app 
+Peer 2 Peer little app
